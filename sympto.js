@@ -33,7 +33,7 @@ document.getElementById('symptomForm').addEventListener('submit', async (e) => {
         
     } catch (error) {
         console.error('Backend Error:', error);
-        alert('❌ Backend connection failed!\n\nMake sure backend is running:\ncd backend && npm run dev');
+        
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
     }

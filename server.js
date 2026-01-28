@@ -10,7 +10,7 @@ const PORT = 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../DREPO1')));
 
 // Routes
 app.post('/api/analyze', async (req, res) => {
@@ -28,14 +28,14 @@ app.post('/api/analyze', async (req, res) => {
 
 // Serve frontend
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, '../DREPO1/sympto.html'));
 });
 
 app.listen(PORT, () => {
     console.log('\n🚀 === SYMPTOM CHECKER LIVE ===');
     console.log(`🌐 Frontend: http://localhost:${PORT}`);
     console.log(`📡 Backend API: POST /api/analyze`);
-    console.log(`📁 Database: backend/database.json`);
+    console.log(`📁 Database: DREPO1/database.json`);
     console.log('================================\n');
 });
 
