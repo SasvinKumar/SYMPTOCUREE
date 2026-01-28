@@ -18,7 +18,7 @@
         </div>
 
         <form id="symptomForm" class="form-section">
-            <h2>🌟 Health Analysis</h2>
+            <h2>🌟 Complete Health Analysis</h2>
             
             <div class="form-row">
                 <div class="input-group">
@@ -38,21 +38,22 @@
             <div class="input-group">
                 <label>📅 Age Group:</label>
                 <div class="category-grid">
-                    <button type="button" class="category-btn active" data-category="1-15">👶 1-15</button>
-                    <button type="button" class="category-btn" data-category="16-25">🧒 16-25</button>
-                    <button type="button" class="category-btn" data-category="26-35">🧑 26-35</button>
-                    <button type="button" class="category-btn" data-category="36-50">👨 36-50</button>
-                    <button type="button" class="category-btn" data-category="51-70">👴 51-70</button>
+                    <button type="button" class="category-btn active" data-category="0-5">👶 0-5</button>
+                    <button type="button" class="category-btn" data-category="6-12">🧒 6-12</button>
+                    <button type="button" class="category-btn" data-category="13-18">📚 13-18</button>
+                    <button type="button" class="category-btn" data-category="18-35">🎓 18-35</button>
+                    <button type="button" class="category-btn" data-category="36-55">👨 36-55</button>
+                    <button type="button" class="category-btn" data-category="55-70">👴 55-70</button>
                     <button type="button" class="category-btn" data-category="70+">👨‍🦳 70+</button>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">🔗 AI Analysis</button>
+            <button type="submit" class="submit-btn">🔗 AI Backend Analysis</button>
         </form>
 
         <div id="results" class="results" style="display:none;">
             <div class="results-header">
-                <h2>📊 AI Results</h2>
+                <h2>📊 AI Analysis Results</h2>
                 <div id="confidence-text"></div>
                 <div class="confidence-bar">
                     <div id="confidence-fill" class="confidence-fill"></div>
@@ -61,81 +62,19 @@
             <div class="results-grid">
                 <div class="result-card">
                     <h3>🔍 Related Symptoms</h3>
-                    <ul id="related-symptoms"></ul>
+                    <ul id="related-symptoms" class="symptom-list"></ul>
                 </div>
                 <div class="result-card">
-                    <h3>📋 Conditions</h3>
-                    <ul id="conditions"></ul>
+                    <h3>📋 Possible Conditions</h3>
+                    <ul id="conditions" class="symptom-list"></ul>
                 </div>
             </div>
             <div class="medication-grid" id="medications"></div>
             <div class="final-note">
-                <strong>✅ Backend Powered:</strong> Real-time AI medical analysis.
+                <strong>✅ Backend Powered:</strong> Real-time medical database analysis.
             </div>
         </div>
     </div>
     <script src="sympto.js"></script>
 </body>
 </html>
-<style>
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(-45deg, #FFE4E1, #E6E6FA, #E0F6FF, #FFFACD, #F0FFF0, #FFE4B5);
-    background-size: 600% 600%;
-    animation: pastelShift 15s ease infinite;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-@keyframes pastelShift {
-    0%, 100% { background-position: 0% 50%; }
-    25% { background-position: 100% 0%; }
-    50% { background-position: 100% 100%; }
-    75% { background-position: 0% 100%; }
-}
-
-.container { max-width: 1000px; margin: 0 auto; background: rgba(255,255,255,0.92); border-radius: 30px; padding: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
-
-.header h1 { font-size: 3rem; background: linear-gradient(135deg, #FF69B4, #BA55D3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 15px; }
-
-.disclaimer { background: linear-gradient(90deg, #FFF5EE, #FFE4E1); border: 2px solid #FFB6C1; border-radius: 18px; padding: 25px; margin-bottom: 35px; text-align: center; }
-
-.form-section { background: rgba(255,255,255,0.8); padding: 40px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); margin-bottom: 35px; }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
-@media (max-width: 800px) { .form-row { grid-template-columns: 1fr; } }
-
-.input-group label { display: block; font-weight: 700; color: #483D8B; margin-bottom: 12px; font-size: 1.1rem; }
-.input-group input, .input-group select { width: 100%; padding: 18px; border: 3px solid #E6E6FA; border-radius: 15px; font-size: 1.1rem; background: rgba(255,255,255,0.9); }
-
-.category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; margin: 25px 0; }
-.category-btn { padding: 18px; border: 3px solid #E6E6FA; background: #F8F1F1; border-radius: 15px; cursor: pointer; font-weight: 700; transition: all 0.4s ease; }
-.category-btn.active, .category-btn:hover { background: linear-gradient(135deg, #DDA0DD, #E6E6FA); border-color: #9370DB; transform: translateY(-4px); color: #4B0082; }
-
-.submit-btn { width: 100%; padding: 22px; background: linear-gradient(135deg, #FF69B4, #BA55D3); color: white; border: none; border-radius: 20px; font-size: 1.3rem; font-weight: 800; cursor: pointer; transition: all 0.4s ease; }
-
-.results { background: rgba(255,255,255,0.9); padding: 40px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); animation: slideIn 0.7s ease; margin-top: 30px; }
-@keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-.confidence-bar { background: #F0F8FF; height: 16px; border-radius: 10px; overflow: hidden; margin: 15px auto 35px; width: 350px; }
-.confidence-fill { height: 100%; background: linear-gradient(90deg, #98FB98, #90EE90); width: 0%; transition: width 1.5s ease; }
-
-.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 35px; }
-@media (max-width: 800px) { .results-grid { grid-template-columns: 1fr; } }
-
-.result-card { background: linear-gradient(135deg, #F8F1F1, #F0FFF0); padding: 30px; border-radius: 20px; border-left: 6px solid #9370DB; }
-.result-card h3 { color: #4B0082; margin-bottom: 20px; font-size: 1.4rem; }
-
-.symptom-list { list-style: none; }
-.symptom-list li { padding: 15px 0 15px 30px; position: relative; border-bottom: 1px solid #E6E6FA; }
-.symptom-list li::before { content: "✨"; position: absolute; left: 0; color: #FF69B4; }
-
-.medication-grid { display: grid; gap: 25px; margin-top: 25px; }
-.med-card { background: linear-gradient(135deg, #F0FFF0, #E6FFE6); padding: 30px; border-radius: 20px; border-left: 6px solid #32CD32; }
-.med-card h4 { color: #228B22; margin-bottom: 20px; font-size: 1.4rem; }
-.dosage { background: rgba(50,205,50,0.1); padding: 20px; border-radius: 15px; border-left: 5px solid #32CD32; margin: 15px 0; }
-
-</style>
