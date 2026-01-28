@@ -1,26 +1,41 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { analyzeSymptoms } = require('./analyzer.js');
+const fs = require('fs');
+const { analyzeSymptoms } = require('./analyzer');
 
 const app = express();
+const PORT = 5000;
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
+// Routes
 app.post('/api/analyze', async (req, res) => {
-    const { symptoms, age, gender } = req.body;
-    console.log('📊 Analyzing:', symptoms);
-    
-    const result = await analyzeSymptoms(symptoms, age, gender);
-    res.json(result);
+    try {
+        const { symptoms, age, gender } = req.body;
+        console.log(`📊 Analyzing: ${symptoms} | Age: ${age} | Gender: ${gender}`);
+        
+        const result = await analyzeSymptoms(symptoms, age, gender);
+        res.json(result);
+    } catch (error) {
+        console.error('❌ Analysis error:', error);
+        res.status(500).json({ error: 'Analysis failed' });
+    }
 });
 
+// Serve frontend
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
-app.listen(5000, () => {
-    console.log('\n🚀 Backend: http://localhost:5000');
-    console.log('🌐 Frontend: http://localhost:5000\n');
+app.listen(PORT, () => {
+    console.log('\n🚀 === SYMPTOM CHECKER LIVE ===');
+    console.log(`🌐 Frontend: http://localhost:${PORT}`);
+    console.log(`📡 Backend API: POST /api/analyze`);
+    console.log(`📁 Database: backend/database.json`);
+    console.log('================================\n');
 });
+
